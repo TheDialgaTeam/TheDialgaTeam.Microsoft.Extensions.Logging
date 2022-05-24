@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net6</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<PackageId>TheDialgaTeam.Core.Logging.Microsoft</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Yong Jian Ming</Authors>
+		<Company>TheDialgaTeam</Company>
+		<Product>TheDialgaTeam.Core.Logging.Microsoft</Product>
+		<Description>This library provides extensions for LoggerTemplate.</Description>
+		<Copyright>Copyright © 2022 Yong Jian Ming</Copyright>
+		<PackageProjectUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logging.Microsoft</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logging.Microsoft</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DefineConstants>DEBUG</DefineConstants>
+		<Optimize>false</Optimize>
+		<DebugType>embedded</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<Optimize>true</Optimize>
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+	</ItemGroup>
+
+</Project>
