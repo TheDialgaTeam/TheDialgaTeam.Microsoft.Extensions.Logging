@@ -10,11 +10,11 @@ public class LoggerTemplateFormatter : ConsoleFormatter, IDisposable
     public const string FormatterName = "LoggerTemplate";
 
     private readonly IDisposable _optionsReloadToken;
-    private LoggerTemplateFormatterOptions? _formatterOptions;
+    private LoggerTemplateFormatterOptions _formatterOptions;
 
     public LoggerTemplateFormatter(IOptionsMonitor<LoggerTemplateFormatterOptions> options) : base(FormatterName)
     {
-        ReloadLoggerOptions(options.CurrentValue);
+        _formatterOptions = options.CurrentValue;
         _optionsReloadToken = options.OnChange(ReloadLoggerOptions);
     }
 
@@ -23,9 +23,11 @@ public class LoggerTemplateFormatter : ConsoleFormatter, IDisposable
         var message = logEntry.Formatter?.Invoke(logEntry.State, logEntry.Exception);
         if (logEntry.Exception == null && message == null) return;
 
-        textWriter.Write(_formatterOptions?.GetPrefixTemplate(logEntry.LogLevel)?.Invoke(new LogEntry(logEntry.LogLevel, logEntry.Category, logEntry.EventId, logEntry.Exception)));
+        var loggerTemplateEntry = new LogEntry(logEntry.LogLevel, logEntry.Category, logEntry.EventId, logEntry.Exception);
+
+        textWriter.Write(_formatterOptions.GetPrefix(loggerTemplateEntry)?.Invoke(loggerTemplateEntry));
         textWriter.Write(message);
-        textWriter.Write(_formatterOptions?.GetSuffixTemplate(logEntry.LogLevel)?.Invoke(new LogEntry(logEntry.LogLevel, logEntry.Category, logEntry.EventId, logEntry.Exception)));
+        textWriter.Write(_formatterOptions.GetSuffix(loggerTemplateEntry)?.Invoke(loggerTemplateEntry));
         textWriter.Write(Environment.NewLine);
 
         if (logEntry.Exception != null)
