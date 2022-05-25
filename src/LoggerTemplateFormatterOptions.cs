@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
+﻿using Microsoft.Extensions.Logging.Console;
 
 namespace TheDialgaTeam.Core.Logging.Microsoft;
 
@@ -21,11 +20,11 @@ public class LoggerTemplateFormatterOptions : ConsoleFormatterOptions
 
     public LoggerTemplateArgs.LoggerTemplate? GetPrefix(in LogEntry logEntry)
     {
-        return TemplateByCategory.TryGetValue(logEntry.Category, out var template) ? template.GetPrefix(logEntry.LogLevel) ?? DefaultTemplate.GetPrefix(logEntry.LogLevel) : DefaultTemplate.GetPrefix(logEntry.LogLevel);
+        return TemplateByCategory.TryGetValue(logEntry.Category, out var template) ? template.GetPrefix(logEntry.LogLevel) : DefaultTemplate.GetPrefix(logEntry.LogLevel);
     }
 
     public LoggerTemplateArgs.LoggerTemplate? GetSuffix(in LogEntry logEntry)
     {
-        return TemplateByCategory.TryGetValue(logEntry.Category, out var template) ? template.GetSuffix(logEntry.LogLevel) ?? DefaultTemplate.GetSuffix(logEntry.LogLevel) : DefaultTemplate.GetSuffix(logEntry.LogLevel);
+        return TemplateByCategory.TryGetValue(logEntry.Category, out var template) ? template.GetSuffix(logEntry.LogLevel) : DefaultTemplate.GetSuffix(logEntry.LogLevel);
     }
 }
