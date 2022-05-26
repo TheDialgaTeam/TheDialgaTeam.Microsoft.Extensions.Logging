@@ -1,12 +1,14 @@
-﻿using Microsoft.Extensions.Logging.Console;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Logging.Console;
 
 namespace TheDialgaTeam.Core.Logging.Microsoft;
 
+[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)]
 public class LoggerTemplateFormatterOptions : ConsoleFormatterOptions
 {
-    public LoggerTemplate DefaultTemplate { get; set; } = new();
+    public LoggerTemplate DefaultTemplate { get; } = new();
 
-    public Dictionary<string, LoggerTemplate> TemplateByCategory { get; set; } = new();
+    public Dictionary<string, LoggerTemplate> TemplateByCategory { get; } = new();
 
     public LoggerTemplateFormatterOptions()
     {
@@ -16,6 +18,18 @@ public class LoggerTemplateFormatterOptions : ConsoleFormatterOptions
     private static string GetDefaultPrefix(in LogEntry logEntry)
     {
         return $"{DateTimeOffset.Now:yyyy-MM-dd HH:mm:ss} ";
+    }
+
+    public LoggerTemplateFormatterOptions SetDefaultTemplate(Action<LoggerTemplate> action)
+    {
+        action.Invoke(DefaultTemplate);
+        return this;
+    }
+
+    public LoggerTemplateFormatterOptions SetTemplate(Type type, LoggerTemplate loggerTemplate)
+    {
+        TemplateByCategory.TryAdd(type.FullName!, loggerTemplate);
+        return this;
     }
 
     public LoggerTemplateArgs.LoggerTemplate? GetPrefix(in LogEntry logEntry)

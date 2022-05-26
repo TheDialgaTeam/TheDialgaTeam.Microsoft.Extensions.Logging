@@ -7,7 +7,7 @@
 		<Nullable>enable</Nullable>
 
 		<PackageId>TheDialgaTeam.Core.Logging.Microsoft</PackageId>
-		<Version>1.2.0</Version>
+		<Version>1.3.0</Version>
 		<Authors>Yong Jian Ming</Authors>
 		<Company>TheDialgaTeam</Company>
 		<Product>TheDialgaTeam.Core.Logging.Microsoft</Product>

@@ -4,19 +4,19 @@ namespace TheDialgaTeam.Core.Logging.Microsoft;
 
 public class LoggerTemplate
 {
-    public LoggerTemplateArgs Global { get; set; } = new();
+    public LoggerTemplateArgs Global { get; } = new();
 
-    public LoggerTemplateArgs Trace { get; set; } = new();
+    public LoggerTemplateArgs Trace { get; } = new();
 
-    public LoggerTemplateArgs Debug { get; set; } = new();
+    public LoggerTemplateArgs Debug { get; } = new();
 
-    public LoggerTemplateArgs Information { get; set; } = new();
+    public LoggerTemplateArgs Information { get; } = new();
 
-    public LoggerTemplateArgs Warning { get; set; } = new();
+    public LoggerTemplateArgs Warning { get; } = new();
 
-    public LoggerTemplateArgs Error { get; set; } = new();
+    public LoggerTemplateArgs Error { get; } = new();
 
-    public LoggerTemplateArgs Critical { get; set; } = new();
+    public LoggerTemplateArgs Critical { get; } = new();
 
     public LoggerTemplateArgs.LoggerTemplate? GetPrefix(LogLevel logLevel)
     {
