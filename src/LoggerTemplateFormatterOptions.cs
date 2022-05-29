@@ -20,32 +20,32 @@ public class LoggerTemplateFormatterOptions : ConsoleFormatterOptions
         return $"{DateTimeOffset.Now:yyyy-MM-dd HH:mm:ss} ";
     }
 
-    public LoggerTemplateFormatterOptions SetDefaultTemplate(Action<LoggerTemplate> action)
+    public LoggerTemplateFormatterOptions SetDefaultTemplate(Action<LoggerTemplate>? action = null)
     {
-        action.Invoke(DefaultTemplate);
+        action?.Invoke(DefaultTemplate);
         return this;
     }
 
-    public LoggerTemplateFormatterOptions SetTemplate(string category, Action<LoggerTemplate> action)
+    public LoggerTemplateFormatterOptions SetTemplate(string category, Action<LoggerTemplate>? action = null)
     {
         var temp = new LoggerTemplate();
-        action(temp);
+        action?.Invoke(temp);
         TemplateByCategory.TryAdd(category, temp);
         return this;
     }
 
-    public LoggerTemplateFormatterOptions SetTemplate(Type type, Action<LoggerTemplate> action)
+    public LoggerTemplateFormatterOptions SetTemplate(Type type, Action<LoggerTemplate>? action = null)
     {
         var temp = new LoggerTemplate();
-        action(temp);
+        action?.Invoke(temp);
         TemplateByCategory.TryAdd(type.FullName!, temp);
         return this;
     }
 
-    public LoggerTemplateFormatterOptions SetTemplate<TType>(Action<LoggerTemplate> action)
+    public LoggerTemplateFormatterOptions SetTemplate<TType>(Action<LoggerTemplate>? action = null)
     {
         var temp = new LoggerTemplate();
-        action(temp);
+        action?.Invoke(temp);
         TemplateByCategory.TryAdd(typeof(TType).FullName!, temp);
         return this;
     }
