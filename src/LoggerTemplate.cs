@@ -18,7 +18,49 @@ public class LoggerTemplate
 
     public LoggerTemplateArgs Critical { get; } = new();
 
-    public LoggerTemplateArgs.LoggerTemplate? GetPrefix(LogLevel logLevel)
+    public LoggerTemplate SetGlobal(Action<LoggerTemplateArgs> action)
+    {
+        action(Global);
+        return this;
+    }
+
+    public LoggerTemplate SetTrace(Action<LoggerTemplateArgs> action)
+    {
+        action(Trace);
+        return this;
+    }
+
+    public LoggerTemplate SetDebug(Action<LoggerTemplateArgs> action)
+    {
+        action(Debug);
+        return this;
+    }
+
+    public LoggerTemplate SetInformation(Action<LoggerTemplateArgs> action)
+    {
+        action(Information);
+        return this;
+    }
+
+    public LoggerTemplate SetWarning(Action<LoggerTemplateArgs> action)
+    {
+        action(Warning);
+        return this;
+    }
+
+    public LoggerTemplate SetError(Action<LoggerTemplateArgs> action)
+    {
+        action(Error);
+        return this;
+    }
+
+    public LoggerTemplate SetCritical(Action<LoggerTemplateArgs> action)
+    {
+        action(Critical);
+        return this;
+    }
+
+    internal LoggerTemplateArgs.LoggerTemplateDelegate? GetPrefix(LogLevel logLevel)
     {
         return logLevel switch
         {
@@ -32,7 +74,7 @@ public class LoggerTemplate
         };
     }
 
-    public LoggerTemplateArgs.LoggerTemplate? GetSuffix(LogLevel logLevel)
+    internal LoggerTemplateArgs.LoggerTemplateDelegate? GetSuffix(LogLevel logLevel)
     {
         return logLevel switch
         {

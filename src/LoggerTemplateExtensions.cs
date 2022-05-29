@@ -5,7 +5,7 @@ namespace TheDialgaTeam.Core.Logging.Microsoft;
 
 public static class LoggerTemplateExtensions
 {
-    [RequiresUnreferencedCode("LoggerTemplateFormatterOptions's dependent types may have their members trimmed. Ensure all required members are preserved.")]
+    [UnconditionalSuppressMessage("ReflectionAnalysis", "IL2026:RequiresUnreferencedCode")]
     public static ILoggingBuilder AddLoggerTemplateFormatter(this ILoggingBuilder loggingBuilder)
     {
         loggingBuilder.AddConsoleFormatter<LoggerTemplateFormatter, LoggerTemplateFormatterOptions>();
@@ -13,7 +13,7 @@ public static class LoggerTemplateExtensions
         return loggingBuilder;
     }
 
-    [RequiresUnreferencedCode("LoggerTemplateFormatterOptions's dependent types may have their members trimmed. Ensure all required members are preserved.")]
+    [UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL2026:RequiresUnreferencedCode")]
     public static ILoggingBuilder AddLoggerTemplateFormatter(this ILoggingBuilder loggingBuilder, Action<LoggerTemplateFormatterOptions> options)
     {
         loggingBuilder.AddConsoleFormatter<LoggerTemplateFormatter, LoggerTemplateFormatterOptions>(options);

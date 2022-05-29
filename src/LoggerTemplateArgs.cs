@@ -2,9 +2,21 @@
 
 public class LoggerTemplateArgs
 {
-    public delegate string LoggerTemplate(in LogEntry logEntry);
+    public delegate string LoggerTemplateDelegate(in LoggerTemplateEntry logEntry);
 
-    public LoggerTemplate? Prefix { get; set; }
+    public LoggerTemplateDelegate? Prefix { get; set; }
 
-    public LoggerTemplate? Suffix { get; set; }
+    public LoggerTemplateDelegate? Suffix { get; set; }
+
+    public LoggerTemplateArgs SetPrefix(LoggerTemplateDelegate? func)
+    {
+        Prefix = func;
+        return this;
+    }
+
+    public LoggerTemplateArgs SetSuffix(LoggerTemplateDelegate? func)
+    {
+        Suffix = func;
+        return this;
+    }
 }

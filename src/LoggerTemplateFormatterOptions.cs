@@ -15,7 +15,7 @@ public class LoggerTemplateFormatterOptions : ConsoleFormatterOptions
         DefaultTemplate.Global.Prefix = GetDefaultPrefix;
     }
 
-    private static string GetDefaultPrefix(in LogEntry logEntry)
+    private static string GetDefaultPrefix(in LoggerTemplateEntry logEntry)
     {
         return $"{DateTimeOffset.Now:yyyy-MM-dd HH:mm:ss} ";
     }
@@ -26,18 +26,36 @@ public class LoggerTemplateFormatterOptions : ConsoleFormatterOptions
         return this;
     }
 
-    public LoggerTemplateFormatterOptions SetTemplate(Type type, LoggerTemplate loggerTemplate)
+    public LoggerTemplateFormatterOptions SetTemplate(string category, Action<LoggerTemplate> action)
     {
-        TemplateByCategory.TryAdd(type.FullName!, loggerTemplate);
+        var temp = new LoggerTemplate();
+        action(temp);
+        TemplateByCategory.TryAdd(category, temp);
         return this;
     }
 
-    public LoggerTemplateArgs.LoggerTemplate? GetPrefix(in LogEntry logEntry)
+    public LoggerTemplateFormatterOptions SetTemplate(Type type, Action<LoggerTemplate> action)
+    {
+        var temp = new LoggerTemplate();
+        action(temp);
+        TemplateByCategory.TryAdd(type.FullName!, temp);
+        return this;
+    }
+
+    public LoggerTemplateFormatterOptions SetTemplate<TType>(Action<LoggerTemplate> action)
+    {
+        var temp = new LoggerTemplate();
+        action(temp);
+        TemplateByCategory.TryAdd(typeof(TType).FullName!, temp);
+        return this;
+    }
+
+    internal LoggerTemplateArgs.LoggerTemplateDelegate? GetPrefix(in LoggerTemplateEntry logEntry)
     {
         return TemplateByCategory.TryGetValue(logEntry.Category, out var template) ? template.GetPrefix(logEntry.LogLevel) : DefaultTemplate.GetPrefix(logEntry.LogLevel);
     }
 
-    public LoggerTemplateArgs.LoggerTemplate? GetSuffix(in LogEntry logEntry)
+    internal LoggerTemplateArgs.LoggerTemplateDelegate? GetSuffix(in LoggerTemplateEntry logEntry)
     {
         return TemplateByCategory.TryGetValue(logEntry.Category, out var template) ? template.GetSuffix(logEntry.LogLevel) : DefaultTemplate.GetSuffix(logEntry.LogLevel);
     }

@@ -23,7 +23,7 @@ public class LoggerTemplateFormatter : ConsoleFormatter, IDisposable
         var message = logEntry.Formatter?.Invoke(logEntry.State, logEntry.Exception);
         if (logEntry.Exception == null && message == null) return;
 
-        var loggerTemplateEntry = new LogEntry(logEntry.LogLevel, logEntry.Category, logEntry.EventId, logEntry.Exception);
+        var loggerTemplateEntry = new LoggerTemplateEntry(logEntry.LogLevel, logEntry.Category, logEntry.EventId, logEntry.Exception);
 
         textWriter.Write(_formatterOptions.GetPrefix(loggerTemplateEntry)?.Invoke(loggerTemplateEntry));
         textWriter.Write(message);
