@@ -2,7 +2,12 @@
 
 public class MessageFormattingBuilder
 {
-    internal readonly MessageFormatting MessageFormatting = new();
+    internal readonly MessageFormatting MessageFormatting;
+
+    internal MessageFormattingBuilder(MessageFormatting messageFormatting)
+    {
+        MessageFormatting = messageFormatting;
+    }
     
     public MessageFormattingBuilder SetPrefix(string template)
     {
@@ -10,7 +15,7 @@ public class MessageFormattingBuilder
         return this;
     }
 
-    public MessageFormattingBuilder SetPrefix(MessageTemplate messageTemplate)
+    public MessageFormattingBuilder SetPrefix(MessageTemplate? messageTemplate)
     {
         MessageFormatting.Prefix = messageTemplate;
         return this;
@@ -22,7 +27,7 @@ public class MessageFormattingBuilder
         return this;
     }
     
-    public MessageFormattingBuilder SetSuffix(MessageTemplate messageTemplate)
+    public MessageFormattingBuilder SetSuffix(MessageTemplate? messageTemplate)
     {
         MessageFormatting.Suffix = messageTemplate;
         return this;

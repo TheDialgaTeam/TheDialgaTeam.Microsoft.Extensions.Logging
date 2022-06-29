@@ -4,9 +4,8 @@ public delegate string MessageTemplate(in LoggerTemplateEntry logEntry);
 
 internal class MessageFormatting
 {
-    public static MessageFormatting DefaultMessageFormatting { get; } = new() { Prefix = DefaultMessageTemplate, Suffix = EmptyMessageTemplate };
-
-    public static MessageFormatting EmptyMessageFormatting { get; } = new() { Prefix = EmptyMessageTemplate, Suffix = EmptyMessageTemplate };
+    public static MessageFormatting DefaultMessageFormatting => new() { Prefix = DefaultMessageTemplate, Suffix = EmptyMessageTemplate };
+    public static MessageFormatting EmptyMessageFormatting => new() { Prefix = EmptyMessageTemplate, Suffix = EmptyMessageTemplate };
 
     public MessageTemplate? Prefix { get; set; }
 
