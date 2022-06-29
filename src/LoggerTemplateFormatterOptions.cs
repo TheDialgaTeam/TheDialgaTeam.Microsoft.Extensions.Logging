@@ -1,62 +1,52 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging.Console;
+﻿using Microsoft.Extensions.Logging.Console;
+using TheDialgaTeam.Core.Logging.Microsoft.LoggerTemplate;
 
 namespace TheDialgaTeam.Core.Logging.Microsoft;
 
-[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)]
 public class LoggerTemplateFormatterOptions : ConsoleFormatterOptions
 {
-    public LoggerTemplate DefaultTemplate { get; } = new();
+    private LogLevelFormatting _defaultLogLevelFormatting = new();
+    private readonly Dictionary<string, LogLevelFormatting> _logLevelFormattingByCategory = new();
 
-    public Dictionary<string, LoggerTemplate> TemplateByCategory { get; } = new();
-
-    public LoggerTemplateFormatterOptions()
+    public LoggerTemplateFormatterOptions SetDefaultTemplate(Action<LogLevelFormattingBuilder> action)
     {
-        DefaultTemplate.Global.Prefix = GetDefaultPrefix;
-    }
-
-    private static string GetDefaultPrefix(in LoggerTemplateEntry logEntry)
-    {
-        return $"{DateTimeOffset.Now:yyyy-MM-dd HH:mm:ss} ";
-    }
-
-    public LoggerTemplateFormatterOptions SetDefaultTemplate(Action<LoggerTemplate>? action = null)
-    {
-        action?.Invoke(DefaultTemplate);
+        var builder = new LogLevelFormattingBuilder();
+        action(builder);
+        _defaultLogLevelFormatting = builder.LogLevelFormatting;
         return this;
     }
 
-    public LoggerTemplateFormatterOptions SetTemplate(string category, Action<LoggerTemplate>? action = null)
+    public LoggerTemplateFormatterOptions SetTemplate(string category, Action<LogLevelFormattingBuilder> action)
     {
-        var temp = new LoggerTemplate();
-        action?.Invoke(temp);
-        TemplateByCategory.TryAdd(category, temp);
+        var builder = new LogLevelFormattingBuilder();
+        action(builder);
+        _logLevelFormattingByCategory[category] = builder.LogLevelFormatting;
         return this;
     }
 
-    public LoggerTemplateFormatterOptions SetTemplate(Type type, Action<LoggerTemplate>? action = null)
+    public LoggerTemplateFormatterOptions SetTemplate(Type type, Action<LogLevelFormattingBuilder> action)
     {
-        var temp = new LoggerTemplate();
-        action?.Invoke(temp);
-        TemplateByCategory.TryAdd(type.FullName!, temp);
+        var builder = new LogLevelFormattingBuilder();
+        action(builder);
+        _logLevelFormattingByCategory[type.FullName!] = builder.LogLevelFormatting;
         return this;
     }
 
-    public LoggerTemplateFormatterOptions SetTemplate<TType>(Action<LoggerTemplate>? action = null)
+    public LoggerTemplateFormatterOptions SetTemplate<TCategory>(Action<LogLevelFormattingBuilder> action)
     {
-        var temp = new LoggerTemplate();
-        action?.Invoke(temp);
-        TemplateByCategory.TryAdd(typeof(TType).FullName!, temp);
+        var builder = new LogLevelFormattingBuilder();
+        action(builder);
+        _logLevelFormattingByCategory[typeof(TCategory).FullName!] = builder.LogLevelFormatting;
         return this;
     }
 
-    internal LoggerTemplateArgs.LoggerTemplateDelegate? GetPrefix(in LoggerTemplateEntry logEntry)
+    internal MessageTemplate GetPrefix(in LoggerTemplateEntry logEntry)
     {
-        return TemplateByCategory.TryGetValue(logEntry.Category, out var template) ? template.GetPrefix(logEntry.LogLevel) : DefaultTemplate.GetPrefix(logEntry.LogLevel);
+        return _logLevelFormattingByCategory.TryGetValue(logEntry.Category, out var template) ? template.GetPrefix(logEntry.LogLevel) : _defaultLogLevelFormatting.GetPrefix(logEntry.LogLevel);
     }
 
-    internal LoggerTemplateArgs.LoggerTemplateDelegate? GetSuffix(in LoggerTemplateEntry logEntry)
+    internal MessageTemplate GetSuffix(in LoggerTemplateEntry logEntry)
     {
-        return TemplateByCategory.TryGetValue(logEntry.Category, out var template) ? template.GetSuffix(logEntry.LogLevel) : DefaultTemplate.GetSuffix(logEntry.LogLevel);
+        return _logLevelFormattingByCategory.TryGetValue(logEntry.Category, out var template) ? template.GetSuffix(logEntry.LogLevel) : _defaultLogLevelFormatting.GetSuffix(logEntry.LogLevel);
     }
 }

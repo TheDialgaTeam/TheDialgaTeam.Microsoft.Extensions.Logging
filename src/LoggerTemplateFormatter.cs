@@ -25,9 +25,9 @@ public class LoggerTemplateFormatter : ConsoleFormatter, IDisposable
 
         var loggerTemplateEntry = new LoggerTemplateEntry(logEntry.LogLevel, logEntry.Category, logEntry.EventId, logEntry.Exception);
 
-        textWriter.Write(_formatterOptions.GetPrefix(loggerTemplateEntry)?.Invoke(loggerTemplateEntry));
+        textWriter.Write(_formatterOptions.GetPrefix(loggerTemplateEntry).Invoke(loggerTemplateEntry));
         textWriter.Write(message);
-        textWriter.Write(_formatterOptions.GetSuffix(loggerTemplateEntry)?.Invoke(loggerTemplateEntry));
+        textWriter.Write(_formatterOptions.GetSuffix(loggerTemplateEntry).Invoke(loggerTemplateEntry));
         textWriter.Write(Environment.NewLine);
 
         if (logEntry.Exception != null)
@@ -44,5 +44,6 @@ public class LoggerTemplateFormatter : ConsoleFormatter, IDisposable
     public void Dispose()
     {
         _optionsReloadToken.Dispose();
+        GC.SuppressFinalize(this);
     }
 }
