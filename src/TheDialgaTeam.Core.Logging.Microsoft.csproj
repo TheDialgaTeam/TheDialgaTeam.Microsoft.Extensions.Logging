@@ -7,7 +7,7 @@
 		<Nullable>enable</Nullable>
 
 		<PackageId>TheDialgaTeam.Core.Logging.Microsoft</PackageId>
-		<Version>1.4.0</Version>
+		<Version>1.6.0</Version>
 		<Authors>Yong Jian Ming</Authors>
 		<Company>TheDialgaTeam</Company>
 		<Product>TheDialgaTeam.Core.Logging.Microsoft</Product>
@@ -16,7 +16,6 @@
 		<PackageProjectUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logging.Microsoft</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logging.Microsoft</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageVersion>1.5.0</PackageVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
