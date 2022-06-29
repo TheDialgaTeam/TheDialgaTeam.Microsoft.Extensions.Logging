@@ -23,11 +23,11 @@ public static class AnsiEscapeCodeConstants
     public const string DarkCyanForegroundColor = "\u001b[36m";
     public const string DarkCyanBackgroundColor = "\u001b[46m";
 
-    public const string DarkGrayForegroundColor = "\u001b[90m";
-    public const string DarkGrayBackgroundColor = "\u001b[100m";
+    public const string DarkGrayForegroundColor = "\u001b[37m";
+    public const string DarkGrayBackgroundColor = "\u001b[47m";
 
-    public const string GrayForegroundColor = "\u001b[37m";
-    public const string GrayBackgroundColor = "\u001b[47m";
+    public const string GrayForegroundColor = "\u001b[90m";
+    public const string GrayBackgroundColor = "\u001b[100m";
 
     public const string RedForegroundColor = "\u001b[91m";
     public const string RedBackgroundColor = "\u001b[101m";
