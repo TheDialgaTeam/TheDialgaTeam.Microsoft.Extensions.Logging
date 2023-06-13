@@ -14,8 +14,8 @@
 		<Product>TheDialgaTeam.Microsoft.Extensions.Logging</Product>
 		<Description>This library provides extensions for Ansi Console.</Description>
 		<Copyright>Copyright © 2023 Yong Jian Ming</Copyright>
-		<PackageProjectUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logging.Microsoft</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logging.Microsoft</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Microsoft.Extensions.Logging</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Microsoft.Extensions.Logging</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
