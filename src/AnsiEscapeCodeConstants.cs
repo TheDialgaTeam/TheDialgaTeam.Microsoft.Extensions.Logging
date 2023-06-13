@@ -1,4 +1,4 @@
-﻿namespace TheDialgaTeam.Core.Logging.Microsoft;
+﻿namespace TheDialgaTeam.Microsoft.Extensions.Logging;
 
 public static class AnsiEscapeCodeConstants
 {

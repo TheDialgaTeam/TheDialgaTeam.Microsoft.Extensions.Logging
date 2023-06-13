@@ -1,8 +1,8 @@
 <div id="top"></div>
 
-[![Deploy To NuGet Registry](https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logging.Microsoft/actions/workflows/deploy.yml/badge.svg)](https://github.com/TheDialgaTeam/TheDialgaTeam.Core.Logging.Microsoft/actions/workflows/deploy.yml)
+[![Deploy To NuGet Registry](https://github.com/TheDialgaTeam/TheDialgaTeam.Microsoft.Extensions.Logging/actions/workflows/deploy.yml/badge.svg)](https://github.com/TheDialgaTeam/TheDialgaTeam.Microsoft.Extensions.Logging/actions/workflows/deploy.yml)
 
-# TheDialgaTeam.Core.Logging.Microsoft
+# TheDialgaTeam.Microsoft.Extensions.Logging
 
 <details>
   <summary>Table of Contents</summary>
@@ -82,7 +82,7 @@ via dotnet command-line interface (CLI)
 To use this package, run the command line below with the version you want to use:
 
 ```sh
-dotnet add package TheDialgaTeam.Core.Logging.Microsoft --version 1.0.0
+dotnet add package TheDialgaTeam.Microsoft.Extensions.Logging --version 1.0.0
 ```
 
 via .csproj file
@@ -91,7 +91,7 @@ To use this package, add `ItemGroup` and configure the `PackageReference` field 
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="TheDialgaTeam.Core.Logging.Microsoft" Version="1.0.0" />
+    <PackageReference Include="TheDialgaTeam.Microsoft.Extensions.Logging" Version="1.0.0" />
 </ItemGroup>
 ```
 
