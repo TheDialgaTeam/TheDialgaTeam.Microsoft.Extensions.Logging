@@ -20,11 +20,9 @@ public sealed class LoggingTemplateFormatter : ConsoleFormatter, IDisposable
 
     public override void Write<TState>(in LogEntry<TState> logEntry, IExternalScopeProvider? scopeProvider, TextWriter textWriter)
     {
-        var message = logEntry.Formatter.Invoke(logEntry.State, logEntry.Exception);
-        if (logEntry.Exception == null) return;
-
         var loggerTemplateEntry = new LoggingTemplateEntry(logEntry.LogLevel, logEntry.Category, logEntry.EventId, logEntry.Exception);
-
+        var message = logEntry.Formatter.Invoke(logEntry.State, logEntry.Exception);
+        
         textWriter.Write(_formatterOptions.GetPrefix(loggerTemplateEntry).Invoke(loggerTemplateEntry));
         textWriter.Write(message);
         textWriter.Write(_formatterOptions.GetSuffix(loggerTemplateEntry).Invoke(loggerTemplateEntry));
