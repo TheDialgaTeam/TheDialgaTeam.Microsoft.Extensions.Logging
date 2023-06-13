@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace TheDialgaTeam.Core.Logging.Microsoft;
+namespace TheDialgaTeam.Microsoft.Extensions.Logging;
 
-public struct LoggerTemplateEntry
+public struct LoggingTemplateEntry
 {
     /// <summary>Gets the LogLevel</summary>
     public LogLevel LogLevel { get; }
@@ -16,7 +16,7 @@ public struct LoggerTemplateEntry
     /// <summary>Gets the log exception</summary>
     public Exception? Exception { get; }
 
-    public LoggerTemplateEntry(LogLevel logLevel, string category, EventId eventId, Exception? exception)
+    public LoggingTemplateEntry(LogLevel logLevel, string category, EventId eventId, Exception? exception)
     {
         LogLevel = logLevel;
         Category = category;

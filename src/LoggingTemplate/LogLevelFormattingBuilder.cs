@@ -1,6 +1,6 @@
-﻿namespace TheDialgaTeam.Core.Logging.Microsoft.LoggerTemplate;
+﻿namespace TheDialgaTeam.Microsoft.Extensions.Logging.LoggingTemplate;
 
-public class LogLevelFormattingBuilder
+public sealed class LogLevelFormattingBuilder
 {
     internal readonly LogLevelFormatting LogLevelFormatting = new();
 

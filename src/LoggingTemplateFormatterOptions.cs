@@ -1,14 +1,14 @@
 ﻿using Microsoft.Extensions.Logging.Console;
-using TheDialgaTeam.Core.Logging.Microsoft.LoggerTemplate;
+using TheDialgaTeam.Microsoft.Extensions.Logging.LoggingTemplate;
 
-namespace TheDialgaTeam.Core.Logging.Microsoft;
+namespace TheDialgaTeam.Microsoft.Extensions.Logging;
 
-public class LoggerTemplateFormatterOptions : ConsoleFormatterOptions
+public sealed class LoggingTemplateFormatterOptions : ConsoleFormatterOptions
 {
     private LogLevelFormatting _defaultLogLevelFormatting = new();
     private readonly Dictionary<string, LogLevelFormatting> _logLevelFormattingByCategory = new();
 
-    public LoggerTemplateFormatterOptions SetDefaultTemplate(Action<LogLevelFormattingBuilder> action)
+    public LoggingTemplateFormatterOptions SetDefaultTemplate(Action<LogLevelFormattingBuilder> action)
     {
         var builder = new LogLevelFormattingBuilder();
         action(builder);
@@ -16,7 +16,7 @@ public class LoggerTemplateFormatterOptions : ConsoleFormatterOptions
         return this;
     }
 
-    public LoggerTemplateFormatterOptions SetTemplate(string category, Action<LogLevelFormattingBuilder> action)
+    public LoggingTemplateFormatterOptions SetTemplate(string category, Action<LogLevelFormattingBuilder> action)
     {
         var builder = new LogLevelFormattingBuilder();
         action(builder);
@@ -24,7 +24,7 @@ public class LoggerTemplateFormatterOptions : ConsoleFormatterOptions
         return this;
     }
 
-    public LoggerTemplateFormatterOptions SetTemplate(Type type, Action<LogLevelFormattingBuilder> action)
+    public LoggingTemplateFormatterOptions SetTemplate(Type type, Action<LogLevelFormattingBuilder> action)
     {
         var builder = new LogLevelFormattingBuilder();
         action(builder);
@@ -32,7 +32,7 @@ public class LoggerTemplateFormatterOptions : ConsoleFormatterOptions
         return this;
     }
 
-    public LoggerTemplateFormatterOptions SetTemplate<TCategory>(Action<LogLevelFormattingBuilder> action)
+    public LoggingTemplateFormatterOptions SetTemplate<TCategory>(Action<LogLevelFormattingBuilder> action)
     {
         var builder = new LogLevelFormattingBuilder();
         action(builder);
@@ -40,12 +40,12 @@ public class LoggerTemplateFormatterOptions : ConsoleFormatterOptions
         return this;
     }
 
-    internal MessageTemplate GetPrefix(in LoggerTemplateEntry logEntry)
+    internal MessageTemplate GetPrefix(in LoggingTemplateEntry logEntry)
     {
         return _logLevelFormattingByCategory.TryGetValue(logEntry.Category, out var template) ? template.GetPrefix(logEntry.LogLevel) : _defaultLogLevelFormatting.GetPrefix(logEntry.LogLevel);
     }
 
-    internal MessageTemplate GetSuffix(in LoggerTemplateEntry logEntry)
+    internal MessageTemplate GetSuffix(in LoggingTemplateEntry logEntry)
     {
         return _logLevelFormattingByCategory.TryGetValue(logEntry.Category, out var template) ? template.GetSuffix(logEntry.LogLevel) : _defaultLogLevelFormatting.GetSuffix(logEntry.LogLevel);
     }

@@ -1,8 +1,8 @@
-﻿namespace TheDialgaTeam.Core.Logging.Microsoft.LoggerTemplate;
+﻿namespace TheDialgaTeam.Microsoft.Extensions.Logging.LoggingTemplate;
 
-public delegate string MessageTemplate(in LoggerTemplateEntry logEntry);
+public delegate string MessageTemplate(in LoggingTemplateEntry logEntry);
 
-internal class MessageFormatting
+internal sealed class MessageFormatting
 {
     public static MessageFormatting DefaultMessageFormatting => new() { Prefix = DefaultMessageTemplate, Suffix = EmptyMessageTemplate };
     public static MessageFormatting EmptyMessageFormatting => new() { Prefix = EmptyMessageTemplate, Suffix = EmptyMessageTemplate };
@@ -11,12 +11,12 @@ internal class MessageFormatting
 
     public MessageTemplate? Suffix { get; set; }
 
-    private static string DefaultMessageTemplate(in LoggerTemplateEntry _)
+    private static string DefaultMessageTemplate(in LoggingTemplateEntry _)
     {
-        return $"{DateTimeOffset.Now:yyyy-MM-dd HH:mm:ss} ";
+        return $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} ";
     }
 
-    private static string EmptyMessageTemplate(in LoggerTemplateEntry _)
+    private static string EmptyMessageTemplate(in LoggingTemplateEntry _)
     {
         return string.Empty;
     }

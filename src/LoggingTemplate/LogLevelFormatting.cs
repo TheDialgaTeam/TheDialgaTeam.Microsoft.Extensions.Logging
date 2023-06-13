@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace TheDialgaTeam.Core.Logging.Microsoft.LoggerTemplate;
+namespace TheDialgaTeam.Microsoft.Extensions.Logging.LoggingTemplate;
 
-internal class LogLevelFormatting
+internal sealed class LogLevelFormatting
 {
     public MessageFormatting Global { get; set; } = MessageFormatting.DefaultMessageFormatting;
 

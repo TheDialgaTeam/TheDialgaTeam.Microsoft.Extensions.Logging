@@ -1,6 +1,6 @@
-﻿namespace TheDialgaTeam.Core.Logging.Microsoft.LoggerTemplate;
+﻿namespace TheDialgaTeam.Microsoft.Extensions.Logging.LoggingTemplate;
 
-public class MessageFormattingBuilder
+public sealed class MessageFormattingBuilder
 {
     internal readonly MessageFormatting MessageFormatting;
 
@@ -11,7 +11,7 @@ public class MessageFormattingBuilder
     
     public MessageFormattingBuilder SetPrefix(string template)
     {
-        MessageFormatting.Prefix = (in LoggerTemplateEntry _) => template;
+        MessageFormatting.Prefix = (in LoggingTemplateEntry _) => template;
         return this;
     }
 
@@ -23,7 +23,7 @@ public class MessageFormattingBuilder
     
     public MessageFormattingBuilder SetSuffix(string template)
     {
-        MessageFormatting.Suffix = (in LoggerTemplateEntry _) => template;
+        MessageFormatting.Suffix = (in LoggingTemplateEntry _) => template;
         return this;
     }
     
