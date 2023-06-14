@@ -6,7 +6,7 @@ namespace TheDialgaTeam.Microsoft.Extensions.Logging.Action;
 
 public static class ActionLoggerExtensions
 {
-    public static ILoggingBuilder AddActionLogger(this ILoggingBuilder loggingBuilder, Action<string> actionLogger)
+    public static ILoggingBuilder AddActionLogger(this ILoggingBuilder loggingBuilder)
     {
         loggingBuilder.Services.AddOptions<LoggingTemplateFormatterOptions>();
         loggingBuilder.Services.TryAddSingleton<LoggingTemplateFormatter>();

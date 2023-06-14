@@ -8,11 +8,11 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<PackageId>TheDialgaTeam.Microsoft.Extensions.Logging</PackageId>
-		<Version>1.8.0</Version>
+		<Version>1.10.0</Version>
 		<Authors>Yong Jian Ming</Authors>
 		<Company>TheDialgaTeam</Company>
 		<Product>TheDialgaTeam.Microsoft.Extensions.Logging</Product>
-		<Description>This library provides extensions for Ansi Console.</Description>
+		<Description>This library provides extensions for Microsoft.Extensions.Logging.</Description>
 		<Copyright>Copyright © 2023 Yong Jian Ming</Copyright>
 		<PackageProjectUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Microsoft.Extensions.Logging</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/TheDialgaTeam/TheDialgaTeam.Microsoft.Extensions.Logging</RepositoryUrl>

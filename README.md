@@ -32,7 +32,7 @@ This library provides custom formatters for Microsoft.Extensions.Logging.
 
 ### Built With
 
-* [dotnet 6.0](https://dotnet.microsoft.com/download/dotnet/6.0)
+* [dotnet 7.0](https://dotnet.microsoft.com/download/dotnet/7.0)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -82,7 +82,7 @@ via dotnet command-line interface (CLI)
 To use this package, run the command line below with the version you want to use:
 
 ```sh
-dotnet add package TheDialgaTeam.Microsoft.Extensions.Logging --version 1.0.0
+dotnet add package TheDialgaTeam.Microsoft.Extensions.Logging --version 1.10.0
 ```
 
 via .csproj file
@@ -91,7 +91,7 @@ To use this package, add `ItemGroup` and configure the `PackageReference` field 
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="TheDialgaTeam.Microsoft.Extensions.Logging" Version="1.0.0" />
+    <PackageReference Include="TheDialgaTeam.Microsoft.Extensions.Logging" Version="1.10.0" />
 </ItemGroup>
 ```
 
