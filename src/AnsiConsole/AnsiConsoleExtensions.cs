@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 using Microsoft.Extensions.Logging;
 
 namespace TheDialgaTeam.Microsoft.Extensions.Logging.AnsiConsole;
@@ -22,7 +23,9 @@ public static partial class AnsiConsoleExtensions
         [return: MarshalAs(UnmanagedType.Bool)]
         public static partial bool SetConsoleMode(IntPtr handle, int mode);
     }
-    
+
+    [RequiresDynamicCode("Binding LoggingTemplateFormatterOptions to configuration values may require generating dynamic code at runtime.")]
+    [RequiresUnreferencedCode("LoggingTemplateFormatterOptions\'s dependent types may have their members trimmed. Ensure all required members are preserved.")]
     public static ILoggingBuilder AddAnsiConsole(this ILoggingBuilder loggingBuilder)
     {
         SetAnsiConsole();
@@ -30,7 +33,9 @@ public static partial class AnsiConsoleExtensions
         loggingBuilder.AddConsole(loggerOptions => loggerOptions.FormatterName = LoggingTemplateFormatter.FormatterName);
         return loggingBuilder;
     }
-    
+
+    [RequiresDynamicCode("Binding LoggingTemplateFormatterOptions to configuration values may require generating dynamic code at runtime.")]
+    [RequiresUnreferencedCode("LoggingTemplateFormatterOptions\'s dependent types may have their members trimmed. Ensure all required members are preserved.")]
     public static ILoggingBuilder AddAnsiConsole(this ILoggingBuilder loggingBuilder, Action<LoggingTemplateFormatterOptions> options)
     {
         SetAnsiConsole();
